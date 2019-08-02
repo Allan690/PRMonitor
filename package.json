@@ -1,0 +1,41 @@
+{
+  "name": "prmonitor2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "NODE_ENV=development  DEBUG=log nodemon --exec babel-node app.js",
+    "start": "node app.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/plugin-transform-classes": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-staged": "^1.0.1",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "@hapi/joi": "^15.1.0",
+    "apollo-errors": "^1.9.0",
+    "apollo-server": "^2.8.1",
+    "apollo-server-express": "^2.8.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.4.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.7",
+    "passport": "^0.4.0",
+    "passport-google-token": "^0.1.2"
+  }
+}
