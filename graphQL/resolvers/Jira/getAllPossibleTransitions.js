@@ -1,6 +1,8 @@
 import { axiosJiraAPIConfig } from './axiosConfig';
+import authorizationHandler from '../../../helpers/unauthorizedResponse';
 
-const getTransitionsForIssue = async (_, { issueIdOrKey }) => {
+const getTransitionsForIssue = async (_, { issueIdOrKey }, { req }) => {
+  authorizationHandler(req);
   try {
     const transitions = await axiosJiraAPIConfig.request({
       method: 'get',
