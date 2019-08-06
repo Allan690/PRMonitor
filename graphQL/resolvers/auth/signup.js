@@ -26,7 +26,7 @@ const createUser = async (_, { userDetails: { password, email } }, { req, res, n
       ...result._doc, password: null, _id: result.id
     };
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };
 

@@ -28,7 +28,7 @@ const googleAuth = async (_, { input: { accessToken } }, { req, res }) => {
       return (new Error('something went wrong'));
     }
   } catch (err) {
-    return err;
+    throw err;
   }
 };
 
