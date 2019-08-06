@@ -15,10 +15,8 @@ const googleAuth = async (_, { input: { accessToken } }, { req, res }) => {
       if (!user) {
         return new Error('Unauthorized access. Please contact admin');
       }
-      const token = await jwt.sign({
-        userId: fetchedUser.id, email
-      }, process.env.SECRET_KEY,
-      { expiresIn: '1h' });
+      const token = await jwt.sign({ userId: fetchedUser.id, email }, process.env.SECRET_KEY,
+        { expiresIn: '3h' });
       return { token, name };
     }
     if (info) {
