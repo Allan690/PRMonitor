@@ -1,10 +1,12 @@
 import axiosConfig from './axiosConfig';
+import authorizationHandler from '../../../helpers/unauthorizedResponse';
 
 const viewLabelledTasks = async (_, {
   input: {
     organization, repoName, labelTag, number
   }
-}) => {
+}, { req }) => {
+  authorizationHandler(req);
   try {
     const results = await axiosConfig.request({
       url: '',

@@ -1,8 +1,7 @@
+import { merge } from 'lodash';
 import authResolver from './auth';
 import githubResolvers from './github';
+import jiraResolvers from './Jira';
 
-const rootResolver = {
-  ...authResolver, ...githubResolvers
-};
-
+const rootResolver = merge(authResolver, githubResolvers, jiraResolvers);
 export default rootResolver;

@@ -1,12 +1,13 @@
 import axiosConfig from './axiosConfig';
+import authorizationHandler from '../../../helpers/unauthorizedResponse';
 
-// TODO: Ensure only authorized users can access this endpoint
 const viewPRAssigneesAndComments = async (_,
   {
     input: {
       orgName, repoName, prNumber, numToDisplay
     }
-  }) => {
+  }, { req }) => {
+  authorizationHandler(req);
   const results = await axiosConfig.request({
     url: '',
     method: 'post',
