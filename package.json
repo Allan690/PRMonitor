@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "NODE_ENV=development  DEBUG=log nodemon --exec babel-node app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "jest --no-cache  --detectOpenHandles --runInBand --forceExit"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -16,6 +17,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4",
     "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.8.0",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
@@ -31,6 +33,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "dotenv": "^8.0.0",
+    "easygraphql-tester": "^5.1.6",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^14.4.2",
@@ -38,6 +41,8 @@
     "lodash": "^4.17.15",
     "mongoose": "^5.6.7",
     "passport": "^0.4.0",
+    "jest": "^24.8.0",
+    "jest-cli": "^24.8.0",
     "passport-google-token": "^0.1.2"
   }
 }

@@ -1,4 +1,7 @@
 # PR-Monitor v1
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
+
 PR-Monitor is a GraphQL API built with node.js, Apollo Server and MongoDB with Mongoose as the ODM. This API helps Product Managers(PMs) and coordinators monitor the state of PRs and issues on Github and JIRA.
 
 ## Getting Started

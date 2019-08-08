@@ -154,7 +154,7 @@ const schema = gql`
          googleAuth(input: AuthInput!): AuthResponse
          viewLabelledTasks(input: RepoAndPRDetails!): [node]
          viewPRAssigneesAndComments(input: PRDetails!): pullRequest
-         createUser(userDetails: UserDetails!): User
+         createUser(input: UserDetails!): User
          getAllBoards: Board
          getSingleIssue(issueProjectId: String!): issue
          getSprintStories(input: SprintAndStoryId!): sprintIssue
