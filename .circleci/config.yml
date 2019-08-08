@@ -1,0 +1,35 @@
+version: 2 # use CircleCI 2.0
+jobs: # a collection of steps
+  build: # runs not using Workflows must have a `build` job as entry point
+    environment:
+      CC_TEST_REPORTER_ID: 65ec997f8cd883e9ecfd07b5c6d00a83ed039403b7b141520262f0ca3e5a2279
+    working_directory: ~/repo # directory where steps will run
+    docker: # run the steps with Docker
+      - image: circleci/node:12.6.0 # ...with this image as the primary container; this is where all `steps` will run
+      - image: mongo:3.4.4 # and this image as the secondary service container
+    steps: # a collection of executable commands
+      - checkout # special step to check out source code to working directory
+      - run:
+            name: codeclimate-test-reporter
+            command: |
+              curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+              chmod +x ./cc-test-reporter
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest && npm install yarn -g'
+      - restore_cache: # special step to restore the dependency cache
+          # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-dependencies
+          command: yarn
+      - save_cache: # special step to save the dependency cache
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Run Test and Coverage
+          command: |
+            ./cc-test-reporter before-build
+            yarn test -- --coverage -u
+            ./cc-test-reporter after-build --exit-code $?

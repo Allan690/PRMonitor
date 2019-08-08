@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import User from '../../../models/user';
 import validateSignup from '../../../middleware/validateSignupBody';
 
-const createUser = async (_, { userDetails: { password, email } }, { req, res, next }) => {
+const createUser = async (_, { input: { password, email } }, { req, res, next }) => {
   validateSignup(req, res, next, password, email);
   if (req.errors) {
     const { errors } = req;
