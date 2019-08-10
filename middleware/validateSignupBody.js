@@ -6,7 +6,7 @@ const schema = joi.object().keys({
   password: joi.string().required().trim().label('Your password')
 });
 
-const validateSignup = (req, res, next, password, email) => {
+const validateSignup = (req, res, password, email) => {
   const errorArray = [];
   const { error, value } = joi.validate({ email, password }, schema, { abortEarly: false });
   if (error) {
