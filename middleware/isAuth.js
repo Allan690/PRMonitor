@@ -18,10 +18,6 @@ const isAuthorized = (req) => {
     req.isAuth = false;
     return;
   }
-  if (!decodedToken) {
-    req.isAuth = false;
-    return;
-  }
   req.isAuth = true;
   req.userId = decodedToken.userId;
 };
