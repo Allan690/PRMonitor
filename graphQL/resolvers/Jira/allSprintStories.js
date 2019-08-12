@@ -1,5 +1,6 @@
 import { axiosJiraAgileConfig } from './axiosConfig';
 import authorizationHandler from '../../../helpers/unauthorizedResponse';
+import issueDestructurer from '../../../helpers/jiraIssueHelper';
 
 const getSprintStories = async (_, { input: { boardId, idOfSprint } }, { req }) => {
   authorizationHandler(req);
@@ -9,48 +10,7 @@ const getSprintStories = async (_, { input: { boardId, idOfSprint } }, { req }) 
       url: `board/${boardId}/sprint/${idOfSprint}/issue`
     });
     const { data: { maxResults, total, issues } } = sprintStories;
-    const sprintIssues = issues.map((issue) => {
-      const {
-        id: issueId,
-        self: issueUrl,
-        key: issueProjectKey,
-        fields: {
-          issuetype: { name: issueType, iconUrl: issueTypeIconUrl },
-          sprint: { id: sprintId, self: sprintUrl, name: sprintName },
-          closedSprints: SprintsCoveredByStory,
-          project: { avatarUrls: { '48x48': projectAvatarUrl } },
-          assignee,
-          status: { statusCategory: { name: issueStatus } },
-          description: issueDescription, creator: { displayName: issueCreator }, active,
-          reporter: { displayName: reporterName, avatarUrls: { '48x48': reporterAvatar } }
-        },
-      } = issue;
-      return {
-        issueId,
-        issueUrl,
-        issueProjectKey,
-        issueTypeDetails: {
-          issueType,
-          issueTypeIconUrl,
-        },
-        sprintDetails: {
-          sprintId,
-          sprintName,
-          sprintUrl
-        },
-        SprintsCoveredByStory,
-        projectAvatarUrl,
-        assigneeDetails: assignee,
-        issueStatus,
-        issueDescription,
-        issueCreator,
-        active,
-        reporterDetails: {
-          reporterAvatar,
-          reporterName
-        }
-      };
-    });
+    const sprintIssues = issues.map(issue => issueDestructurer(issue));
     const issuesObject = {
       maxResults, total, sprintIssues
     };
