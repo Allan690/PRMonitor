@@ -1,5 +1,6 @@
 import axiosConfig from './axiosConfig';
 import authorizationHandler from '../../../helpers/unauthorizedResponse';
+import axiosHelper from '../../../helpers/axiosHelper';
 
 const viewPRAssigneesAndComments = async (_,
   {
@@ -8,11 +9,7 @@ const viewPRAssigneesAndComments = async (_,
     }
   }, { req }) => {
   authorizationHandler(req);
-  const results = await axiosConfig.request({
-    url: '',
-    method: 'post',
-    data: {
-      query: `
+  const results = await axiosConfig.request(axiosHelper(`
       query {
   repository(owner: "${orgName}", name: "${repoName}"){
     pullRequest(number: ${prNumber}) {
@@ -36,9 +33,7 @@ const viewPRAssigneesAndComments = async (_,
     }
 }
 }
-      `
-    }
-  });
+      `));
   const { data: { data: { repository: { pullRequest: { state, assignees, labels: { edges } } } } } } = results;
   const assigneeArray = assignees.edges.map(obj => ({ ...obj.node }));
   const labelsArray = edges.map(obj => ({ ...obj.node }));
