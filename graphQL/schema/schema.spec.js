@@ -34,8 +34,8 @@ describe('test graphql schema', () => {
   });
 
   it('should pass if viewLabelledTasks mutation is valid', () => {
-    const mutation = `
-    mutation {
+    const query = `
+    query {
     viewLabelledTasks(input: {
     organization: "andela",
     repoName: "tembea"
@@ -52,11 +52,11 @@ describe('test graphql schema', () => {
     }
     }
     `;
-    tester.test(true, mutation);
+    tester.test(true, query);
   });
 
   it('should fail if viewLabelledTasks mutation is invalid', () => {
-    const mutation = `
+    const query = `
     mutation {
     viewLabelledTasks(input: {
     organization: "andela",
@@ -73,12 +73,12 @@ describe('test graphql schema', () => {
     }
     }
     `;
-    tester.test(false, mutation);
+    tester.test(false, query);
   });
 
   it('should fail if viewPRAssigneesAndComments mutation is invalid', () => {
-    const mutation = `
-    mutation {
+    const query = `
+    query {
      viewPRAssigneesAndComments(input: {
         orgName: "andela"
         repoName: String!
@@ -86,12 +86,12 @@ describe('test graphql schema', () => {
      })
     }
     `;
-    tester.test(false, mutation);
+    tester.test(false, query);
   });
 
   it('should pass if viewPRAssigneesAndComments mutation is valid', () => {
-    const mutation = `
-    mutation {
+    const query = `
+    query {
     viewPRAssigneesAndComments(input: {
         orgName: "allan"
         repoName: "repo"
@@ -106,7 +106,7 @@ describe('test graphql schema', () => {
      }
     }
     `;
-    tester.test(true, mutation);
+    tester.test(true, query);
   });
 
   it('should pass if createUser mutation is valid', () => {
@@ -127,25 +127,25 @@ describe('test graphql schema', () => {
   });
 
   it('should pass if the getAllBoards mutation is valid', () => {
-    const mutation = `
-    mutation {
+    const query = `
+    query {
     getAllBoards {
     maxResults
     total
     }
     }
     `;
-    tester.test(true, mutation);
+    tester.test(true, query);
   });
 
   it('should fail with an error if getAllBoards mutation is invalid', () => {
     try {
-      const mutation = `
-    mutation {
+      const query = `
+    query {
     getAllBoards
     }
     `;
-      tester.mock({ query: mutation });
+      tester.mock({ query: query });
     } catch (err) {
       expect(err instanceof Error).toEqual(true);
       expect(err.message)
@@ -156,8 +156,8 @@ describe('test graphql schema', () => {
   });
 
   it('should pass if getSingleIssue mutation is valid', () => {
-    const mutation = `
-    mutation {
+    const query = `
+    query {
     getSingleIssue(issueProjectId: "ALL-123") {
     issueId
     issueUrl
@@ -170,13 +170,13 @@ describe('test graphql schema', () => {
     }
     }
     `;
-    tester.test(true, mutation);
+    tester.test(true, query);
   });
 
   it('should fail if getSingle mutation is invalid', () => {
     try {
-      const mutation = `
-    mutation {
+      const query = `
+    query {
     getSingleIssue {
     issueId
     issueUrl
@@ -189,7 +189,7 @@ describe('test graphql schema', () => {
     }
     }
     `;
-      tester.mock({ query: mutation });
+      tester.mock({ query: query });
     } catch (err) {
       expect(err instanceof Error).toEqual(true);
       expect(err.message).toEqual(
@@ -199,8 +199,8 @@ describe('test graphql schema', () => {
   });
 
   it('should pass if getSprintStories mutation is valid', () => {
-    const mutation = `
-    mutation {
+    const query = `
+    query {
     getSprintStories(input: {
     boardId: 3
     idOfSprint: 29
@@ -215,13 +215,13 @@ describe('test graphql schema', () => {
     }
     }
     `;
-    tester.test(true, mutation);
+    tester.test(true, query);
   });
 
   it('should fail if getSprintStories mutation is invalid', () => {
     try {
-      const mutation = `
-    mutation {
+      const query = `
+    query {
     getSprintStories(input: {
     boardId: 3
     }) {
@@ -235,7 +235,7 @@ describe('test graphql schema', () => {
     }
     }
     `;
-      tester.mock({ query: mutation });
+      tester.mock({ query: query });
     } catch (err) {
       expect(err.message).toEqual(
         'Argument "input" has invalid value {boardId: 3}.'
@@ -244,36 +244,36 @@ describe('test graphql schema', () => {
   });
 
   it('should pass if validateAndTransitionIssue is valid', () => {
-    const mutation = `
-    mutation {
+    const query = `
+    query {
     validateAndTransitionIssue(issueIdOrKey: "ALL-100", transitionId: 3) {
     success
     message
     }
     }
     `;
-    tester.test(true, mutation);
+    tester.test(true, query);
   });
 
   it('should fail if validateAndTransitionIssue is invalid', () => {
     try {
-      const mutation = `
-    mutation {
+      const query = `
+    query {
     validateAndTransitionIssue(issueIdOrKey: "ALL-100", transitionId: "3") {
     success
     message
     }
     }
     `;
-      tester.mock({ query: mutation });
+      tester.mock({ query: query });
     } catch (err) {
       expect(err.message).toBe('Argument "transitionId" has invalid value "3".');
     }
   });
 
   it('should pass if getTransitionsForIssue is valid', () => {
-    const mutation = `
-    mutation {
+    const query = `
+    query {
     getTransitionsForIssue(issueIdOrKey: "TAL-123") {
     expand
     transitions {
@@ -283,13 +283,13 @@ describe('test graphql schema', () => {
     }
     }
     `;
-    tester.test(true, mutation);
+    tester.test(true, query);
   });
 
   it('should fail if getTransitionsForIssue is invalid', () => {
     try {
-      const mutation = `
-    mutation {
+      const query = `
+    query {
     getTransitionsForIssue {
     transitions: {
     id
@@ -297,7 +297,7 @@ describe('test graphql schema', () => {
     }
     }
     `;
-      tester.mock({ query: mutation });
+      tester.mock({ query: query });
     } catch (err) {
       expect(err instanceof GraphQLError).toEqual(true);
       expect(err.message).toEqual('Syntax Error: Expected Name, found {');

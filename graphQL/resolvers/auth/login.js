@@ -10,14 +10,14 @@ const googleAuth = async (_, { input: { accessToken } }, { req, res }) => {
     const { data, info } = await authenticateGoogle(req, res);
     if (data) {
       const { profile: { _json: fetchedUser } } = data;
-      const { email, name } = fetchedUser;
+      const { email, name, picture } = fetchedUser;
       const user = await User.findOne({ email });
       if (!user) {
         return new Error('Unauthorized access. Please contact admin');
       }
       const token = await jwt.sign({ userId: fetchedUser.id, email }, process.env.SECRET_KEY,
         { expiresIn: '3h' });
-      return { token, name };
+      return { token, name, picture };
     }
     if (info) {
       if (info.code === 'ETIMEDOUT') {

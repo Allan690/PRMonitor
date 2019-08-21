@@ -2,7 +2,7 @@ import viewLabelledTasks from './fetchFinishedTasks';
 import viewPRAssigneesAndComments from './viewPRAssignees';
 
 const githubResolvers = {
-  Mutation: {
+  Query: {
     viewLabelledTasks,
     viewPRAssigneesAndComments
   }

@@ -13,6 +13,7 @@ const issueDestructurer = (issue) => {
       project: { avatarUrls: { '48x48': projectAvatarUrl } },
       assignee,
       status: { name: issueStatus },
+      summary,
       creator: { displayName: issueCreator }, active,
       reporter: { displayName: reporterName, avatarUrls: { '48x48': reporterAvatar } }
     },
@@ -44,6 +45,7 @@ const issueDestructurer = (issue) => {
     issueDescription: description,
     issueCreator,
     active,
+    summary,
     reporterDetails: {
       reporterAvatar,
       reporterName
