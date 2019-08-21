@@ -23,6 +23,7 @@ describe('test getSingleStory', () => {
         id: 1,
         self: 'url',
         key: 'TEST-1',
+        renderedFields: { description: 'testing' },
         fields: {
           issuetype: {
             name: 'testing',
@@ -39,11 +40,10 @@ describe('test getSingleStory', () => {
               '48x48': 'url'
             }
           },
-          assignee: [],
+          assignee: {},
           status: {
             statusCategory: 'To-Do'
           },
-          description: null,
           creator: {
             displayName: 'testUser1'
           },
@@ -67,9 +67,9 @@ describe('test getSingleStory', () => {
       sprintDetails: { sprintId: 1, sprintName: 'sprint', sprintUrl: 'url' },
       SprintsCoveredByStory: [],
       projectAvatarUrl: 'url',
-      assigneeDetails: [],
+      assigneeDetails: {},
       issueStatus: undefined,
-      issueDescription: null,
+      issueDescription: 'testing',
       issueCreator: 'testUser1',
       active: true,
       reporterDetails: { reporterAvatar: 'url', reporterName: 'testUser1' }

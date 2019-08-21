@@ -7,7 +7,7 @@ const getSprintStories = async (_, { input: { boardId, idOfSprint } }, { req }) 
   try {
     const sprintStories = await axiosJiraAgileConfig.request({
       method: 'get',
-      url: `board/${boardId}/sprint/${idOfSprint}/issue`
+      url: `board/${boardId}/sprint/${idOfSprint}/issue?expand=renderedFields`
     });
     const { data: { maxResults, total, issues } } = sprintStories;
     const sprintIssues = issues.map(issue => issueDestructurer(issue));
