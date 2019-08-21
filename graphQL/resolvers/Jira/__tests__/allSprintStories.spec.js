@@ -21,6 +21,7 @@ describe('test getSprintStories', () => {
             id: 1,
             self: 'url',
             key: 'TES-123',
+            renderedFields: { description: 'testing' },
             fields: {
               issuetype: {
                 name: 'task',
@@ -39,11 +40,8 @@ describe('test getSprintStories', () => {
               },
               assignee: [],
               status: {
-                statusCategory: {
-                  name: 'TO-DO'
-                }
+                name: 'TO-DO'
               },
-              description: 'testing',
               creator: {
                 displayName: 'testUser1'
               },
@@ -61,6 +59,7 @@ describe('test getSprintStories', () => {
             id: 2,
             self: 'url',
             key: 'TES-124',
+            renderedFields: { description: 'testing2' },
             fields: {
               issuetype: {
                 name: 'task',
@@ -79,11 +78,8 @@ describe('test getSprintStories', () => {
               },
               assignee: [],
               status: {
-                statusCategory: {
-                  name: 'TO-DO'
-                }
+                name: 'TO-DO'
               },
-              description: 'testing2',
               creator: {
                 displayName: 'testUser1'
               },

@@ -7,7 +7,7 @@ const getSingleIssue = async (_, { issueProjectId }, { req }) => {
   try {
     const userStory = await axiosJiraAgileConfig.request({
       method: 'get',
-      url: `issue/${issueProjectId}`
+      url: `issue/${issueProjectId}?expand=renderedFields`
     });
     const { data } = userStory;
     return issueDestructurer(data);

@@ -3,6 +3,7 @@ import getSprintStories from './allSprintStories';
 import getSingleIssue from './getSingleStory';
 import validateAndTransitionIssue from './transitionIssues';
 import getTransitionsForIssue from './getAllPossibleTransitions';
+import getAllSprints from "./getAllSprints";
 
 const jiraResolvers = {
   Mutation: {
@@ -10,7 +11,8 @@ const jiraResolvers = {
     getSprintStories,
     getSingleIssue,
     validateAndTransitionIssue,
-    getTransitionsForIssue
+    getTransitionsForIssue,
+    getAllSprints
   }
 };
 

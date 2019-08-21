@@ -107,6 +107,7 @@ const schema = gql`
         key: String
         displayName: String
         active: Boolean
+        url: String
     }
     
     type reporterInfo {
@@ -150,6 +151,23 @@ const schema = gql`
         isInitial: Boolean
         isConditional: Boolean
     }
+    
+    type SprintData {
+        maxResults: Int!
+        total: Int
+        Sprints: [sprintDetails]
+    }
+    
+    type sprintDetails {
+        id: Int!
+        self: String
+        state: String
+        name: String
+        startDate: String
+        endDate: String
+        completeDate: String
+        originBoardId: Int
+    }
      type Mutation {
          googleAuth(input: AuthInput!): AuthResponse
          viewLabelledTasks(input: RepoAndPRDetails!): [node]
@@ -160,6 +178,7 @@ const schema = gql`
          getSprintStories(input: SprintAndStoryId!): sprintIssue
          validateAndTransitionIssue(issueIdOrKey: String! transitionId: Int!): transitionSuccess
          getTransitionsForIssue(issueIdOrKey: String!): transitionData
+         getAllSprints(boardId: Int!): SprintData
     }
     schema {
         mutation: Mutation, query: Query
