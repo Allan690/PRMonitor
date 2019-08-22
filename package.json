@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start:dev": "NODE_ENV=development  DEBUG=log nodemon --exec babel-node app.js",
-    "start": "node app.js",
+    "start:dev": "NODE_ENV=development  DEBUG=log nodemon --exec babel-node index.js",
+    "start": "node index.js",
     "test": "jest --no-cache  --detectOpenHandles --runInBand --forceExit"
   },
   "devDependencies": {
