@@ -18,6 +18,7 @@ const viewLabelledTasks = async (_, {
           state
           title
           number
+          permalink
           author {
             avatarUrl
             url

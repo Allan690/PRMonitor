@@ -4,6 +4,7 @@ const schema = gql`
     type AuthResponse {
         token: String
         name: String
+        picture: String
     }
     input AuthInput {
         accessToken: String!
@@ -12,9 +13,6 @@ const schema = gql`
         _id: ID!
         email: String!
         password: String
-    }
-    type Query {
-        hello: String
     }
     input UserDetails {
         email: String!
@@ -30,6 +28,7 @@ const schema = gql`
         state: String!
         title: String!
         number: Int!
+        permalink: String!
         author: Author!
     }
     type Author {
@@ -128,6 +127,7 @@ const schema = gql`
         active: Boolean!
         assigneeDetails: issueAssignee
         reporterDetails: reporterInfo
+        summary: String!
     }
     type transitionSuccess {
         success: Boolean
@@ -170,15 +170,17 @@ const schema = gql`
     }
      type Mutation {
          googleAuth(input: AuthInput!): AuthResponse
-         viewLabelledTasks(input: RepoAndPRDetails!): [node]
-         viewPRAssigneesAndComments(input: PRDetails!): pullRequest
          createUser(input: UserDetails!): User
-         getAllBoards: Board
-         getSingleIssue(issueProjectId: String!): issue
-         getSprintStories(input: SprintAndStoryId!): sprintIssue
-         validateAndTransitionIssue(issueIdOrKey: String! transitionId: Int!): transitionSuccess
-         getTransitionsForIssue(issueIdOrKey: String!): transitionData
-         getAllSprints(boardId: Int!): SprintData
+    }
+    type Query {
+        viewLabelledTasks(input: RepoAndPRDetails!): [node]
+        viewPRAssigneesAndComments(input: PRDetails!): pullRequest
+        getAllBoards: Board
+        getSingleIssue(issueProjectId: String!): issue
+        getSprintStories(input: SprintAndStoryId!): sprintIssue
+        validateAndTransitionIssue(issueIdOrKey: String! transitionId: Int!): transitionSuccess
+        getTransitionsForIssue(issueIdOrKey: String!): transitionData
+        getAllSprints(boardId: Int!): SprintData
     }
     schema {
         mutation: Mutation, query: Query

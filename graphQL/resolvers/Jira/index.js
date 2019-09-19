@@ -6,7 +6,7 @@ import getTransitionsForIssue from './getAllPossibleTransitions';
 import getAllSprints from "./getAllSprints";
 
 const jiraResolvers = {
-  Mutation: {
+  Query: {
     getAllBoards,
     getSprintStories,
     getSingleIssue,
