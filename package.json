@@ -35,7 +35,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "easygraphql-tester": "^5.1.6",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-graphql": "^0.9.0",
     "graphql": "^14.4.2",
     "jest": "^24.8.0",
